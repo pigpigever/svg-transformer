@@ -1,5 +1,7 @@
 # svg2img
 
+[English](./README.md) | 中文文档
+
 一个将 **SVG 元素** 转换为图片（PNG/JPEG/WebP）并下载的轻量级浏览器端工具。  
 支持内联样式、自动裁剪、可配置导出参数。
 

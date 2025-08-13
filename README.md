@@ -1,5 +1,7 @@
 # svg2img
 
+English | [中文文档](./README.zh-CN.md)
+
 A lightweight browser-side utility to convert SVG elements into images (PNG/JPEG/WebP) and download them.
 Supports inline styles, automatic cropping, and configurable export parameters.
 
