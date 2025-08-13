@@ -88,12 +88,12 @@ Creates an exporter instance with default settings.
 
 ### Returned Methods
 
-- exportSvg2Img(svgElement, options?)  
+- `exportSvg2Img(svgElement, options?)`  
   Converts an SVG element into an image and triggers a download.
   options will override the default settings.
 
-- downloadSvg(svgElement, fileName)  
+- `downloadSvg(svgElement, fileName)`  
   Downloads the given SVG element as a .svg file.
 
-- generateImageUrlFromSvg(svgElement, options?)  
+- `generateImageUrlFromSvg(svgElement, options?)`  
   Converts an SVG element into an image and returns its Base64 URL without downloading.

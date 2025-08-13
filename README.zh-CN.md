@@ -84,11 +84,11 @@ svg2img.downloadSvg(svgElement, 'original.svg');
 
 ### 返回方法
 
-- exportSvg2Img(svgElement, options?)  
+- `exportSvg2Img(svgElement, options?)`  
 将 SVG 元素转换为图片并触发下载。options 会覆盖默认配置。
 
-- downloadSvg(svgElement, fileName)  
+- `downloadSvg(svgElement, fileName)`  
 直接将 SVG 元素下载为 .svg 文件。
 
-- getImgExportUrl(svgElement, options?)  
+- `getImgExportUrl(svgElement, options?)`  
 将 SVG 元素转换为图片并返回 Base64 URL，不触发下载。
