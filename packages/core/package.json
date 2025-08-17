@@ -1,6 +1,6 @@
 {
   "name": "svg-transformer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,12 @@
     "dist",
     "src"
   ],
-  "keywords": ["svg", "transformer", "image", "svg-transformer"],
+  "keywords": [
+    "svg",
+    "transformer",
+    "image",
+    "svg-transformer"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build && tsc -p tsconfig.build.json",
