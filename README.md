@@ -21,18 +21,18 @@ Supports inline styles, automatic cropping, and configurable export parameters.
 ## 📦 Installation
 
 ```bash
-npm install svg2img
+npm install svgToImg
 # or
-yarn add svg2img
+yarn add svgToImg
 # or
-pnpm add svg2img
+pnpm add svgToImg
 ```
 
 ## 🛠 Usage Examples
 ### 1. Create an exporter with default options
 
 ```typescript
-import createSvgExporter from 'svg2img';
+import createSvgExporter from 'svgToImg';
 
 const svg2img = createSvgExporter({
   fileType: 'image/png',  // export format
