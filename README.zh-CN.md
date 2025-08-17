@@ -17,18 +17,18 @@
 ## 📦 安装
 
 ```bash
-npm install svg-to-img
+npm install svg-transformer
 # 或
-yarn add svg-to-img
+yarn add svg-transformer
 # 或
-pnpm add svg-to-img
+pnpm add svg-transformer
 ```
 
 ## 🛠 使用示例
 ### 1. 创建导出器（设置默认参数）
 
 ```typescript
-import createSvgExporter from 'svg-to-img';
+import createSvgExporter from 'svg-transformer';
 
 const svg2img = createSvgExporter({
   fileType: 'image/png',  // 导出格式
