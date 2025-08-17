@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx lerna run build",
     "tag": "npx lerna version",
-    "publish": "npx lerna publish --filter core"
+    "publish": "npx lerna publish"
   },
   "devDependencies": {
     "lerna": "^8.2.3"
