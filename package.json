@@ -3,9 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "build": "npx lerna run build",
-    "tag": "npx lerna version --no-private",
-    "publish": "npx lerna publish --no-private"
+    "build": "lerna run build",
+    "tag": "lerna version",
+    "publish": "lerna publish"
   },
   "devDependencies": {
     "lerna": "^8.2.3"
