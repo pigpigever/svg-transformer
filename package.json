@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "build": "npx lerna run build",
-    "tag": "npx lerna version",
-    "publish": "npx lerna publish"
+    "tag": "npx lerna version --no-private",
+    "publish": "npx lerna publish --no-private"
   },
   "devDependencies": {
     "lerna": "^8.2.3"
