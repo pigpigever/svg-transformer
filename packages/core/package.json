@@ -1,5 +1,5 @@
 {
-  "name": "svgToImg",
+  "name": "svg-to-img",
   "version": "0.0.2",
   "type": "module",
   "main": "dist/index.js",
