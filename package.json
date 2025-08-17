@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx lerna run build",
     "tag": "npx lerna version",
-    "publish": "npx lerna publish --ignore-root"
+    "publish": "npx lerna publish --scope svgToImg"
   },
   "devDependencies": {
     "lerna": "^8.2.3"
