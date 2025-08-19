@@ -80,6 +80,11 @@ const createSvgExporter = (defaultOptions: SvgTransformerOptions) => {
     return serializeSvg(clonedSvg).url;
   };
 
+  /**
+   * download file directly
+   * @param url
+   * @param fileName
+   */
   const downloadFile = (url: string, fileName: string) => {
     const a = document.createElement('a');
     a.href = url;
@@ -89,6 +94,11 @@ const createSvgExporter = (defaultOptions: SvgTransformerOptions) => {
     document.body.removeChild(a);
   };
 
+  /**
+   * generate image url data from svg
+   * @param svg
+   * @param options
+   */
   const generateImageUrlFromSvg = (svg: SVGSVGElement, options: SvgTransformerOptions) =>
     new Promise<string>((resolve, reject) => {
       const { clonedSvg, width, height, pixelRatio, scaleFactor } = initSvg(svg, options);
@@ -115,12 +125,22 @@ const createSvgExporter = (defaultOptions: SvgTransformerOptions) => {
       image.src = url;
     });
 
+  /**
+   * download svg directly
+   * @param svg
+   * @param fileName
+   */
   const downloadSvg = (svg: SVGSVGElement, fileName?: string) => {
     const url = toSvgUrl(svg, defaultOptions);
     const name = fileName ?? defaultOptions.fileName ?? 'download';
     downloadFile(url, name);
   };
 
+  /**
+   * export svg to img
+   * @param svg
+   * @param options
+   */
   const exportSvg2Img = async (svg: SVGSVGElement, options?: Partial<SvgTransformerOptions>) => {
     const finalOptions: SvgTransformerOptions = { ...defaultOptions, ...options };
     try {
