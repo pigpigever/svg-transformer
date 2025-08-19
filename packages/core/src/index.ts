@@ -132,7 +132,7 @@ const createSvgExporter = (defaultOptions?: SvgTransformerOptions) => {
         URL.revokeObjectURL(url);
         resolve(canvas.toDataURL(options.fileType, options.quality ?? 1));
       };
-      image.onerror = () => reject('Image load failed');
+      image.onerror = () => reject('[svg-transformer] Image load failed');
 
       image.src = url;
     });
