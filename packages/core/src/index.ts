@@ -20,7 +20,19 @@ export interface SvgTransformerOptions {
   style?: CustomStyle;
 }
 
-const createSvgExporter = (defaultOptions: SvgTransformerOptions) => {
+const createSvgExporter = (defaultOptions?: SvgTransformerOptions) => {
+
+  const getDefaultOptions = () => {
+    if (defaultOptions) {
+      return defaultOptions
+    }
+    return {
+      fileType: 'image/png',
+      fileName: 'image',
+      quality: 1,
+    }
+  }
+
   const makeInlineStyles = (source: SVGSVGElement, target: SVGElement) => {
     const sourceElements = source.querySelectorAll('*');
     const targetElements = target.querySelectorAll('*');
@@ -132,7 +144,7 @@ const createSvgExporter = (defaultOptions: SvgTransformerOptions) => {
    */
   const downloadSvg = (svg: SVGSVGElement, fileName?: string) => {
     const finalOptions = {
-      ...defaultOptions,
+      ...getDefaultOptions(),
       fileType: 'image/svg+xml',
     }
     const url = toSvgUrl(svg, finalOptions);
@@ -146,7 +158,7 @@ const createSvgExporter = (defaultOptions: SvgTransformerOptions) => {
    * @param options
    */
   const exportSvg2Img = async (svg: SVGSVGElement, options?: Partial<SvgTransformerOptions>) => {
-    const finalOptions: SvgTransformerOptions = { ...defaultOptions, ...options };
+    const finalOptions: SvgTransformerOptions = { ...getDefaultOptions(), ...options };
     try {
       const url = await generateImageUrlFromSvg(svg, finalOptions);
       downloadFile(url, finalOptions.fileName);
