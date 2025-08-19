@@ -4,7 +4,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: 'src/index.ts',
-      name: 'SVG2Img',
+      name: 'svg-transformer',
       formats: ['es', 'umd'],
     },
     rollupOptions: {
@@ -20,7 +20,7 @@ export default defineConfig({
           format: 'umd',
           dir: 'dist/umd',
           entryFileNames: '[name].js',
-          name: 'SVG2Img',
+          name: 'svg-transformer',
           globals: {},
         },
       ],

@@ -12,7 +12,7 @@ export type CustomStyle = {
   backgroundColor?: string;
 }
 
-export interface Svg2ImgOptions {
+export interface SvgTransformerOptions {
   fileType: ImageFileType;
   fileName: string;
   quality?: number;
@@ -20,7 +20,7 @@ export interface Svg2ImgOptions {
   style?: CustomStyle;
 }
 
-const createSvgExporter = (defaultOptions: Svg2ImgOptions) => {
+const createSvgExporter = (defaultOptions: SvgTransformerOptions) => {
   const makeInlineStyles = (source: SVGSVGElement, target: SVGElement) => {
     const sourceElements = source.querySelectorAll('*');
     const targetElements = target.querySelectorAll('*');
@@ -44,7 +44,7 @@ const createSvgExporter = (defaultOptions: Svg2ImgOptions) => {
     });
   };
 
-  const initSvg = (svgElement: SVGSVGElement, options: Svg2ImgOptions) => {
+  const initSvg = (svgElement: SVGSVGElement, options: SvgTransformerOptions) => {
     const clonedSvg = svgElement.cloneNode(true) as SVGSVGElement;
     makeInlineStyles(svgElement, clonedSvg);
 
@@ -75,7 +75,7 @@ const createSvgExporter = (defaultOptions: Svg2ImgOptions) => {
     return { image, url };
   };
 
-  const toSvgUrl = (svg: SVGSVGElement, options: Svg2ImgOptions) => {
+  const toSvgUrl = (svg: SVGSVGElement, options: SvgTransformerOptions) => {
     const { clonedSvg } = initSvg(svg, options);
     return serializeSvg(clonedSvg).url;
   };
@@ -89,7 +89,7 @@ const createSvgExporter = (defaultOptions: Svg2ImgOptions) => {
     document.body.removeChild(a);
   };
 
-  const generateImageUrlFromSvg = (svg: SVGSVGElement, options: Svg2ImgOptions) =>
+  const generateImageUrlFromSvg = (svg: SVGSVGElement, options: SvgTransformerOptions) =>
     new Promise<string>((resolve, reject) => {
       const { clonedSvg, width, height, pixelRatio, scaleFactor } = initSvg(svg, options);
       const { image, url } = serializeSvg(clonedSvg);
@@ -121,13 +121,13 @@ const createSvgExporter = (defaultOptions: Svg2ImgOptions) => {
     downloadFile(url, name);
   };
 
-  const exportSvg2Img = async (svg: SVGSVGElement, options?: Partial<Svg2ImgOptions>) => {
-    const finalOptions: Svg2ImgOptions = { ...defaultOptions, ...options };
+  const exportSvg2Img = async (svg: SVGSVGElement, options?: Partial<SvgTransformerOptions>) => {
+    const finalOptions: SvgTransformerOptions = { ...defaultOptions, ...options };
     try {
       const url = await generateImageUrlFromSvg(svg, finalOptions);
       downloadFile(url, finalOptions.fileName);
     } catch (e) {
-      console.error('[svg2Img] exportSvg2Img error', e);
+      console.error('[svg-transformer] exportSvg2Img error', e);
     }
   };
 

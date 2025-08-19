@@ -1,6 +1,6 @@
-# svg2img
+# svg-transformer
 
-English | [中文文档](./README.zh-CN.md)
+English | [中文文档](https://github.com/pigpigever/svg-transformer/blob/master/README.zh-CN.md)
 
 A lightweight browser-side utility to convert SVG elements into images (PNG/JPEG/WebP) and download them.
 Supports inline styles, automatic cropping, and configurable export parameters.
@@ -34,7 +34,7 @@ pnpm add svg-transformer
 ```typescript
 import createSvgExporter from 'svg-transformer';
 
-const svg2img = createSvgExporter({
+const svgTransformer = createSvgExporter({
   fileType: 'image/png',  // export format
   fileName: 'chart.png',  // download file name
   quality: 1,             // image quality (JPEG/WebP only)
@@ -50,13 +50,13 @@ const svg2img = createSvgExporter({
 
 ```typescript
 const svgElement = document.querySelector('svg')!;
-svg2img.exportSvg2Img(svgElement);
+svgTransformer.exportSvg2Img(svgElement);
 ```
 
 ### 3. Override default options for a single call
 
 ```typescript
-svg2img.exportSvg2Img(svgElement, {
+svgTransformer.exportSvg2Img(svgElement, {
   fileType: 'image/jpeg',
   quality: 0.8,
   fileName: 'chart.jpg'
@@ -66,14 +66,14 @@ svg2img.exportSvg2Img(svgElement, {
 ### 4. Download the original SVG file only
 
 ```typescript
-svg2img.downloadSvg(svgElement, 'original.svg');
+svgTransformer.downloadSvg(svgElement, 'original.svg');
 ```
 
 ## 📄 API
-`createSvgExporter(defaultOptions: Svg2ImgOptions)`
+`createSvgExporter(defaultOptions: SvgTransformerOptions)`
 Creates an exporter instance with default settings.
 
-`Svg2ImgOptions`
+`SvgTransformerOptions`
 
 | Parameter     | Type     | Required | Description                                                       |
 | ------------- | -------- | -------- | ----------------------------------------------------------------- |

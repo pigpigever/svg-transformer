@@ -1,4 +1,4 @@
-# svg2img
+# svg-transformer
 
 [English](./README.md) | 中文文档
 
@@ -30,7 +30,7 @@ pnpm add svg-transformer
 ```typescript
 import createSvgExporter from 'svg-transformer';
 
-const svg2img = createSvgExporter({
+const svgTransformer = createSvgExporter({
   fileType: 'image/png',  // 导出格式
   fileName: 'chart.png',  // 下载文件名
   quality: 1,             // 图片质量（仅 JPEG/WebP 有效）
@@ -47,13 +47,13 @@ const svg2img = createSvgExporter({
 
 ```typescript
 const svgElement = document.querySelector('svg')!;
-svg2img.exportSvg2Img(svgElement);
+svgTransformer.exportSvg2Img(svgElement);
 ```
 
 ### 3. 单次调用覆盖默认配置
 
 ```typescript
-svg2img.exportSvg2Img(svgElement, {
+svgTransformer.exportSvg2Img(svgElement, {
   fileType: 'image/jpeg',
   quality: 0.8,
   fileName: 'chart.jpg'
@@ -63,14 +63,14 @@ svg2img.exportSvg2Img(svgElement, {
 ### 4. 仅下载 svg 文件
 
 ```typescript
-svg2img.downloadSvg(svgElement, 'original.svg');
+svgTransformer.downloadSvg(svgElement, 'original.svg');
 ```
 
 ## 📄 API
-`createSvgExporter(defaultOptions: Svg2ImgOptions)`
+`createSvgExporter(defaultOptions: SvgTransformerOptions)`
 创建一个带有默认配置的导出器。
 
-`Svg2ImgOptions`
+`SvgTransformerOptions`
 
 | 参数            | 类型       | 必填 | 说明                                              |
 | ------------- | -------- | -- | ----------------------------------------------- |
@@ -85,10 +85,10 @@ svg2img.downloadSvg(svgElement, 'original.svg');
 ### 返回方法
 
 - `exportSvg2Img(svgElement, options?)`  
-将 SVG 元素转换为图片并触发下载。options 会覆盖默认配置。
+  将 SVG 元素转换为图片并触发下载。options 会覆盖默认配置。
 
 - `downloadSvg(svgElement, fileName)`  
-直接将 SVG 元素下载为 .svg 文件。
+  直接将 SVG 元素下载为 .svg 文件。
 
 - `getImgExportUrl(svgElement, options?)`  
-将 SVG 元素转换为图片并返回 Base64 URL，不触发下载。
+  将 SVG 元素转换为图片并返回 Base64 URL，不触发下载。
