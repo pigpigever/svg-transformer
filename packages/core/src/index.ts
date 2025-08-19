@@ -131,8 +131,12 @@ const createSvgExporter = (defaultOptions: SvgTransformerOptions) => {
    * @param fileName
    */
   const downloadSvg = (svg: SVGSVGElement, fileName?: string) => {
-    const url = toSvgUrl(svg, defaultOptions);
-    const name = fileName ?? defaultOptions.fileName ?? 'download';
+    const finalOptions = {
+      ...defaultOptions,
+      fileType: 'image/svg+xml',
+    }
+    const url = toSvgUrl(svg, finalOptions);
+    const name = fileName ?? finalOptions.fileName ?? 'download';
     downloadFile(url, name);
   };
 
