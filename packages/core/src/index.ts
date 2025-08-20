@@ -24,14 +24,18 @@ const createSvgExporter = (defaultOptions?: SvgTransformerOptions) => {
 
   const getDefaultOptions = () => {
     if (defaultOptions) {
-      return defaultOptions
+      return defaultOptions;
     }
     return {
       fileType: 'image/png',
       fileName: 'image',
       quality: 1,
-    }
-  }
+    };
+  };
+
+  const isSvgElement = (element: unknown) => {
+    return element instanceof SVGSVGElement;
+  };
 
   const makeInlineStyles = (source: SVGSVGElement, target: SVGElement) => {
     const sourceElements = source.querySelectorAll('*');
@@ -84,11 +88,11 @@ const createSvgExporter = (defaultOptions?: SvgTransformerOptions) => {
     const source = '<?xml version="1.0" standalone="no"?>\r\n' + serializer.serializeToString(svg);
     const image = new Image();
     const url = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(source)}`;
-    return { image, url };
+    return {image, url};
   };
 
   const toSvgUrl = (svg: SVGSVGElement, options: SvgTransformerOptions) => {
-    const { clonedSvg } = initSvg(svg, options);
+    const {clonedSvg} = initSvg(svg, options);
     return serializeSvg(clonedSvg).url;
   };
 
@@ -113,8 +117,12 @@ const createSvgExporter = (defaultOptions?: SvgTransformerOptions) => {
    */
   const generateImageUrlFromSvg = (svg: SVGSVGElement, options: SvgTransformerOptions) =>
     new Promise<string>((resolve, reject) => {
-      const { clonedSvg, width, height, pixelRatio, scaleFactor } = initSvg(svg, options);
-      const { image, url } = serializeSvg(clonedSvg);
+      if (!isSvgElement(svg)) {
+        reject('[svg-transformer] Can not execute downloadSvg function without svg element');
+        return;
+      }
+      const {clonedSvg, width, height, pixelRatio, scaleFactor} = initSvg(svg, options);
+      const {image, url} = serializeSvg(clonedSvg);
 
       const canvas = document.createElement('canvas');
       canvas.width = width * pixelRatio * scaleFactor;
@@ -143,10 +151,13 @@ const createSvgExporter = (defaultOptions?: SvgTransformerOptions) => {
    * @param fileName
    */
   const downloadSvg = (svg: SVGSVGElement, fileName?: string) => {
+    if (!isSvgElement(svg)) {
+      throw new Error('[svg-transformer] Can not execute downloadSvg function without svg element');
+    }
     const finalOptions = {
       ...getDefaultOptions(),
       fileType: 'image/svg+xml',
-    }
+    };
     const url = toSvgUrl(svg, finalOptions);
     const name = fileName ?? finalOptions.fileName ?? 'download';
     downloadFile(url, name);
@@ -158,8 +169,12 @@ const createSvgExporter = (defaultOptions?: SvgTransformerOptions) => {
    * @param options
    */
   const exportSvg2Img = async (svg: SVGSVGElement, options?: Partial<SvgTransformerOptions>) => {
-    const finalOptions: SvgTransformerOptions = { ...getDefaultOptions(), ...options };
     try {
+      if (!isSvgElement(svg)) {
+        console.error('[svg-transformer] Can not execute downloadSvg function without svg element');
+        return;
+      }
+      const finalOptions: SvgTransformerOptions = {...getDefaultOptions(), ...options};
       const url = await generateImageUrlFromSvg(svg, finalOptions);
       downloadFile(url, finalOptions.fileName);
     } catch (e) {
@@ -167,7 +182,7 @@ const createSvgExporter = (defaultOptions?: SvgTransformerOptions) => {
     }
   };
 
-  return { downloadFile, generateImageUrlFromSvg, downloadSvg, exportSvg2Img };
+  return {downloadFile, generateImageUrlFromSvg, downloadSvg, exportSvg2Img};
 };
 
 export default createSvgExporter;
