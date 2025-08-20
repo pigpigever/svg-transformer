@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "build": "lerna run build",
-    "tag": "lerna version",
+    "changelog": "npx lerna version",
     "publish": "lerna publish"
   },
   "devDependencies": {
