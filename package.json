@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "build": "lerna run build",
-    "changelog": "npx lerna version",
+    "version": "lerna version --conventional-commits --no-push --no-git-tag-version",
+    "version:beta":"lerna version prerelease --preid beta --no-push --no-git-tag-version",
     "publish": "lerna publish"
   },
   "devDependencies": {
